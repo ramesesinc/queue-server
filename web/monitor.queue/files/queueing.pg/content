@@ -10,10 +10,10 @@ groups.each{
 }
 
 if ( PARAMS.group ) {
-	def o = groups.find{ it.objid.toString().equalsIgnoreCase( PARAMS.group ) } 
+	def o = groups.findAll{ it.objid.toString().toLowerCase().matches( PARAMS.group.toLowerCase().replace(',','|') ) } 
 	if ( o ) { 
 		groups.clear(); 
-		groups << o; 
+		groups.addAll( o ); 
 	} 
 } 
 %>
